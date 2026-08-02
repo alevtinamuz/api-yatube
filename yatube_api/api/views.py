@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
 from rest_framework.generics import get_object_or_404
 
-from posts.models import Post, Group, Comment
+from posts.models import Post, Group
 from .serializers import PostSerializer, GroupSerializer, CommentSerializer
 
 
@@ -39,4 +39,4 @@ class CommentViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         post_id = self.kwargs.get('post_id')
         post = get_object_or_404(Post, pk=post_id)
-        serializer.save(author=self.request.user,post=post)
+        serializer.save(author=self.request.user, post=post)
